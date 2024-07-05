@@ -18,19 +18,21 @@ export default function Home() {
           name="email"
           type="email"
           placeholder="Email"
+          errors={state?.errors?.fieldErrors.email}
         />
         <FormInput
           src="/user.svg"
-          name="string"
-          type="string"
+          name="username"
+          type="text"
           placeholder="Username"
+          errors={state?.errors?.fieldErrors.username}
         />
         <FormInput
           src="/key.svg"
           name="password"
           type="password"
           placeholder="Password"
-          errors={state?.errors}
+          errors={state?.errors?.fieldErrors.password}
         />
         <FormBtn />
         <div

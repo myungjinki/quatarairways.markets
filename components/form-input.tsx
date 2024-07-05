@@ -1,4 +1,5 @@
 import Image from "next/image";
+import { InputHTMLAttributes } from "react";
 
 interface IFormInput {
   src: string;
@@ -11,10 +12,9 @@ interface IFormInput {
 export default function FormInput({
   src,
   name,
-  type,
-  placeholder,
-  errors,
-}: IFormInput) {
+  errors = [],
+  ...rest
+}: IFormInput & InputHTMLAttributes<HTMLInputElement>) {
   return (
     <>
       <div className="flex flex-col w-96">
@@ -23,15 +23,15 @@ export default function FormInput({
           <input
             className="bg-[#F8F7F5] w-72 outline-none  placeholder:text-neutral-400"
             name={name}
-            type={type}
-            placeholder={placeholder}
+            type={rest.type}
+            placeholder={rest.placeholder}
             required
           />
         </div>
-        {errors?.map((error, index) => (
-          <div key={index} className="text-red-500 m-2 pl-1 text-xs">
+        {errors.map((error, index) => (
+          <span key={index} className="text-red-500 m-2 pl-1 text-xs">
             {error}
-          </div>
+          </span>
         ))}
       </div>
     </>
