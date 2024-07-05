@@ -5,7 +5,7 @@ interface IFormInput {
   name: string;
   type: string;
   placeholder: string;
-  error?: string;
+  errors?: string[];
 }
 
 export default function FormInput({
@@ -13,7 +13,7 @@ export default function FormInput({
   name,
   type,
   placeholder,
-  error,
+  errors,
 }: IFormInput) {
   return (
     <>
@@ -28,7 +28,11 @@ export default function FormInput({
             required
           />
         </div>
-        {error && <div className="text-red-500 m-2 pl-1 text-xs">{error}</div>}
+        {errors?.map((error, index) => (
+          <div key={index} className="text-red-500 m-2 pl-1 text-xs">
+            {error}
+          </div>
+        ))}
       </div>
     </>
   );

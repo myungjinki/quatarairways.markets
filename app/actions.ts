@@ -6,7 +6,7 @@ export async function handleForm(prevState: any, formData: FormData) {
   if (password !== "12345") {
     return {
       success: false,
-      error: "wrong password",
+      errors: ["wrong password", "wrong password"],
     };
   }
   return {

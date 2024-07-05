@@ -8,6 +8,7 @@ import { handleForm } from "./actions";
 
 export default function Home() {
   const [state, action] = useFormState(handleForm, null);
+
   return (
     <main className="flex flex-col justify-center items-center p-16 max-w-screen-lg">
       <Image className="" src="/fire.svg" alt="" width="50" height="50" />
@@ -29,7 +30,7 @@ export default function Home() {
           name="password"
           type="password"
           placeholder="Password"
-          error={state?.error}
+          errors={state?.errors}
         />
         <FormBtn />
         <div
