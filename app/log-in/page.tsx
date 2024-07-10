@@ -1,10 +1,11 @@
 "use client";
 
-import FormBtn from "@/components/form-btn";
-import FormInput from "@/components/form-input";
+import FormBtn from "@/components/button";
+import FormInput from "@/components/input";
 import Image from "next/image";
 import { useFormState } from "react-dom";
 import { handleForm } from "./actions";
+import Link from "next/link";
 
 export default function Home() {
   const [state, action] = useFormState(handleForm, null);
@@ -34,7 +35,13 @@ export default function Home() {
           placeholder="Password"
           errors={state?.errors?.fieldErrors.password}
         />
-        <FormBtn />
+        <FormBtn text="Log in" />
+        <Link
+          className="bg-[#EEEBE7] w-[23rem] p-3 rounded-full text-sm font-bold  hover:bg-[#CFCCC8] active:scale-95 transition-all duration-300 mt-2 text-center"
+          href="/create-account"
+        >
+          Create Account
+        </Link>
         <div
           className={`flex border-2 rounded-2xl h-14 w-[23rem] m-2 p-1 items-center bg-[#32BC6E] ${
             state?.success ? "" : "hidden"
