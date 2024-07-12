@@ -7,7 +7,6 @@ interface Routes {
 
 const publicOnlyUrls: Routes = {
   "/log-in": true,
-  "/profile": true,
   "/create-account": true,
 };
 
@@ -19,8 +18,8 @@ export async function middleware(request: NextRequest) {
       return NextResponse.redirect(new URL("/log-in", request.url));
     }
   } else {
-    if (!exists) {
-      return NextResponse.redirect(new URL("/profile", request.url));
+    if (exists) {
+      return NextResponse.redirect(new URL("/", request.url));
     }
   }
 }
