@@ -1,6 +1,7 @@
 import TweetList from "@/components/tweet-list";
 import { Prisma, Tweet } from "@prisma/client";
 import db from "@/lib/db";
+import AddTweet from "@/components/add-tweet";
 
 export async function getInitialTweets(page: number) {
   return await db.tweet.findMany({
@@ -17,6 +18,7 @@ export default async function Home() {
 
   return (
     <div>
+      <AddTweet />
       <TweetList initialTweets={initialTweets} />
     </div>
   );

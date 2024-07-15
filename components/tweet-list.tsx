@@ -32,7 +32,7 @@ export default function TweetList({ initialTweets }: TweetListProps) {
         {tweets.map((tweet, index) => (
           <Link
             href={`/tweets/${tweet.id}`}
-            className="flex border-black p-10 rounded-sm m-5 w-96 border-4 gap-5 justify-between"
+            className="flex border-black p-10 rounded-sm m-5 w-96 border-4 gap-5 justify-between break-all"
             key={index}
           >
             <div>{tweet.id}</div>
@@ -41,7 +41,7 @@ export default function TweetList({ initialTweets }: TweetListProps) {
           </Link>
         ))}
       </div>
-      <div>
+      <div className="flex gap-5 font-bold text-2xl *:cursor-pointer">
         <button onClick={onClickLeft}>&larr;</button>
         <button onClick={onClickRight}>&rarr;</button>
       </div>
