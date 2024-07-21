@@ -15,6 +15,15 @@ export async function getMoreTweets(page: number) {
   });
 }
 
+export async function getInitialTweets(page: number) {
+  return await db.tweet.findMany({
+    take: 5,
+    orderBy: {
+      created_at: "desc",
+    },
+  });
+}
+
 const tweetSchema = z.object({
   tweet: z
     .string({

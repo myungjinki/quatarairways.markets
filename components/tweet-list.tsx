@@ -1,10 +1,12 @@
 "use client";
 
-import { getMoreTweets } from "@/app/action";
-import { InitialTweets } from "@/app/page";
+import { getInitialTweets, getMoreTweets } from "@/app/action";
 import { formatToTimeAgo } from "@/lib/utils";
+import { Prisma } from "@prisma/client";
 import Link from "next/link";
 import { useEffect, useState } from "react";
+
+type InitialTweets = Prisma.PromiseReturnType<typeof getInitialTweets>;
 
 interface TweetListProps {
   initialTweets: InitialTweets;
