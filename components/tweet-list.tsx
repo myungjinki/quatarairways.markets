@@ -34,12 +34,15 @@ export default function TweetList({ initialTweets }: TweetListProps) {
         {tweets.map((tweet, index) => (
           <Link
             href={`/tweets/${tweet.id}`}
-            className="flex border-black p-10 rounded-sm m-5 w-96 border-4 gap-5 justify-between break-all"
+            className="flex border-black p-10 rounded-sm m-5 w-96 border-4 gap-5 justify-between items-center break-all"
             key={index}
           >
             <div>{tweet.id}</div>
             <div>{tweet.tweet}</div>
-            <div>{formatToTimeAgo(tweet.created_at.toString())}</div>
+            <div>
+              <div>{tweet.user.username}</div>
+              <div>{formatToTimeAgo(tweet.created_at.toString())}</div>
+            </div>
           </Link>
         ))}
       </div>
