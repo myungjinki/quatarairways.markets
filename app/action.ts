@@ -12,6 +12,13 @@ export async function getMoreTweets(page: number) {
     orderBy: {
       created_at: "desc",
     },
+    include: {
+      user: {
+        select: {
+          username: true,
+        },
+      },
+    },
   });
 }
 
@@ -20,6 +27,13 @@ export async function getInitialTweets(page: number) {
     take: 5,
     orderBy: {
       created_at: "desc",
+    },
+    include: {
+      user: {
+        select: {
+          username: true,
+        },
+      },
     },
   });
 }

@@ -22,13 +22,6 @@ export default function Home() {
           errors={state?.errors?.fieldErrors.email}
         />
         <FormInput
-          src="/user.svg"
-          name="username"
-          type="text"
-          placeholder="Username"
-          errors={state?.errors?.fieldErrors.username}
-        />
-        <FormInput
           src="/key.svg"
           name="password"
           type="password"

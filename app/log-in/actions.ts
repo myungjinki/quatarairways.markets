@@ -16,7 +16,6 @@ const formSchema = z.object({
     .string()
     .min(1, { message: "This field has to be filled." })
     .regex(EMAIL_REGEX, "Must be @zod"),
-  username: z.string().min(5),
   password: z
     .string()
     .min(PASSWORD_MIN_LENGTH)
@@ -26,7 +25,6 @@ const formSchema = z.object({
 export async function handleForm(prevState: any, formData: FormData) {
   const data = {
     email: formData.get("email"),
-    username: formData.get("username"),
     password: formData.get("password"),
   };
   const result = await formSchema.spa(data);
