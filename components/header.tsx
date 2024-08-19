@@ -17,6 +17,7 @@ export default async function Header() {
     <div className="flex items-center bg-neutral-300 justify-between p-5 *:bg-amber-200 *:size-16 *:flex *:items-center *:justify-center *:rounded-lg">
       <Link href="/">Home</Link>
       <Link href="/profile">Profile</Link>
+      <Link href="/search">Search</Link>
       {session.id ? (
         <form action={signOut}>
           <button>Sign out</button>
