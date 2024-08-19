@@ -5,6 +5,7 @@ import { useFormState } from "react-dom";
 import { UserUpdate } from "./action";
 
 export default function Form({ user }: { user: User }) {
+  //@ts-ignore
   const [state, dispatch] = useFormState(UserUpdate, { data: user });
   if (state.success) {
     alert("Successfully updated");
