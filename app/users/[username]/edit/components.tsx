@@ -19,22 +19,28 @@ export default function Form({ user }: { user: User }) {
         <div>
           <span>Password: </span>
           <input name="password" type="password" />
-          {state.errors?.fieldErrors.password?.map((error) => (
-            <div className="text-red-700">{error}</div>
+          {state.errors?.fieldErrors.password?.map((error, index) => (
+            <div key={index} className="text-red-700">
+              {error}
+            </div>
           ))}
         </div>
         <div>
           <span>Confirm Password: </span>
           <input name="confirm_password" type="password" />
-          {state.errors?.fieldErrors.confirm_password?.map((error) => (
-            <div className="text-red-700">{error}</div>
+          {state.errors?.fieldErrors.confirm_password?.map((error, index) => (
+            <div key={index} className="text-red-700">
+              {error}
+            </div>
           ))}
         </div>
         <div>
           <span>Email: </span>
           <input name="email" type="email" />
-          {state.errors?.fieldErrors.email?.map((error) => (
-            <div className="text-red-700">{error}</div>
+          {state.errors?.fieldErrors.email?.map((error, index) => (
+            <div key={index} className="text-red-700">
+              {error}
+            </div>
           ))}
         </div>
         <div className="self-end">
