@@ -5,6 +5,7 @@ import getSession from "@/lib/session";
 import { unstable_cache as nextCache, revalidateTag } from "next/cache";
 import TweetLike from "@/components/tweet-like";
 import Response from "@/components/response";
+import Link from "next/link";
 
 export async function getTweet(id: number) {
   return db.tweet.findUnique({
@@ -92,7 +93,9 @@ export default async function tweetDetail({
     <div className="flex flex-col items-center mt-5 h-svh gap-2 mx-auto *:w-3/4">
       <div className="border p-5 rounded-md border-black">{tweet.tweet}</div>
       <div className="flex justify-between p-2 border-2 border-black">
-        <div>{tweet.user.username}</div>
+        <Link href={`/users/${tweet.user.username}`}>
+          {tweet.user.username}
+        </Link>
         <div>{formatToTimeAgo(tweet.created_at.toString())}</div>
         <TweetLike likeCount={likeCount} isLiked={isLiked} tweetId={id} />
       </div>
@@ -101,7 +104,9 @@ export default async function tweetDetail({
       {responses.map((response, index) => (
         <div key={index} className="border p-2">
           <div>{response.payload}</div>
-          <div>{response.user.username}</div>
+          <Link href={`/users/${response.user.username}`}>
+            {response.user.username}
+          </Link>
         </div>
       ))}
     </div>
