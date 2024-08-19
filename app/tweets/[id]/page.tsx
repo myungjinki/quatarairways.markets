@@ -7,7 +7,7 @@ import TweetLike from "@/components/tweet-like";
 import Response from "@/components/response";
 import Link from "next/link";
 
-export async function getTweet(id: number) {
+async function getTweet(id: number) {
   return db.tweet.findUnique({
     where: {
       id,
