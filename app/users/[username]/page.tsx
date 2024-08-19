@@ -4,7 +4,7 @@ import { formatToTimeAgo } from "@/lib/utils";
 import Link from "next/link";
 import { notFound } from "next/navigation";
 
-export async function getUser(username: string) {
+async function getUser(username: string) {
   const user = await db.user.findUnique({
     where: {
       username,
