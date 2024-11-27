@@ -11,8 +11,8 @@ export default function Home() {
     <main>
       <form action={action}>
         <Input name="email" type="email" placeholder="Email" />
-        <Input name="string" type="string" placeholder="Username" />
-        <Input name="password" type="password" placeholder="Password" error={state?.error} />
+        <Input name="username" type="text" placeholder="Username" />
+        <Input name="password" type="password" placeholder="Password" errors={state?.errors?.fieldErrors.password} />
         <Button>Log in</Button>
         <div>
           <span>Welcome back!</span>
