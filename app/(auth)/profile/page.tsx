@@ -1,24 +1,12 @@
 import { notFound, redirect } from "next/navigation";
-import db from "@/app/lib/db";
 import getSession from "@/app/lib/session";
-
-async function getUser() {
-  const session = await getSession();
-  if (session.id) {
-    const user = await db.user.findUnique({
-      where: {
-        id: session.id,
-      },
-    });
-    if (user) {
-      return user;
-    }
-  }
-  notFound();
-}
+import { getUser } from "./actions";
 
 export default async function ProfilePage() {
   const user = await getUser();
+  if (!user) {
+    return notFound();
+  }
   const logOut = async () => {
     "use server";
     const session = await getSession();
