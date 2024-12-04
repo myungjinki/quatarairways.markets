@@ -6,7 +6,7 @@ import { formatToTimeAgo } from "@/app/lib/utils";
 import TweetLike from "../../components/tweet-like";
 import Response from "../../components/response";
 
-export async function getTweet(id: number) {
+async function getTweet(id: number) {
   return db.tweet.findUnique({
     where: {
       id,

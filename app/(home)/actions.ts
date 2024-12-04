@@ -5,8 +5,16 @@ import { z } from "zod";
 import db from "@/app/lib/db";
 import getSession from "../lib/session";
 
+export async function getInitialTweets(page: number) {
+  return await db.tweet.findMany({
+    take: 5,
+    orderBy: {
+      created_at: "desc",
+    },
+  });
+}
+
 export async function getMoreTweets(page: number) {
-  console.log(page);
   return await db.tweet.findMany({
     skip: page * 5,
     take: 5,

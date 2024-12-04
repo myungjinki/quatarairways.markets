@@ -1,18 +1,7 @@
-import { Prisma, Tweet } from "@prisma/client";
-import db from "@/app/lib/db";
+import { Tweet } from "@prisma/client";
 import TweetList from "./components/tweet-list";
-import AddTweet from "./components/add-tweet";
-
-export async function getInitialTweets(page: number) {
-  return await db.tweet.findMany({
-    take: 5,
-    orderBy: {
-      created_at: "desc",
-    },
-  });
-}
-
-export type InitialTweets = Prisma.PromiseReturnType<typeof getInitialTweets>;
+import AddTweet from "./components/tweet-add";
+import { getInitialTweets } from "./actions";
 
 export default async function Home() {
   const initialTweets: Tweet[] = await getInitialTweets(0);

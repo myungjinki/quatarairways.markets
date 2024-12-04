@@ -3,8 +3,10 @@
 import { useEffect, useState } from "react";
 import Link from "next/link";
 import { formatToTimeAgo } from "@/app/lib/utils";
-import { getMoreTweets } from "../actions";
-import { InitialTweets } from "../page";
+import { getInitialTweets, getMoreTweets } from "../actions";
+import { Prisma } from "@prisma/client";
+
+type InitialTweets = Prisma.PromiseReturnType<typeof getInitialTweets>;
 
 interface TweetListProps {
   initialTweets: InitialTweets;
