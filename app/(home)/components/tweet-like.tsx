@@ -27,6 +27,7 @@ export default function TweetLike({ likeCount, isLiked, tweetId }: TweetLikeProp
           onClick();
         });
       }}
+      className="h-8 px-2 py-1 text-white rounded-md bg-primary-500"
     >
       {state.isLiked ? "Dislike" : "Like"}
       {` ${state.likeCount}`}

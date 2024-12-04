@@ -3,17 +3,18 @@
 import { useFormState } from "react-dom";
 import addResponse from "../tweets/[id]/actions";
 import Input from "@/app/components/input";
+import Button from "@/app/components/button";
 
-interface ResponseProps {
+interface ReplyFormProps {
   tweetId: number;
 }
 
-export default function Response({ tweetId }: ResponseProps) {
-  const [state, action] = useFormState(addResponse, tweetId);
+export default function ReplyForm({ tweetId }: ReplyFormProps) {
+  const [_, dispatch] = useFormState(addResponse, tweetId);
   return (
-    <form action={action}>
+    <form action={dispatch} className="grid grid-cols-2 gap-4">
       <Input name="response" />
-      <button>Reply</button>
+      <Button>Reply</Button>
     </form>
   );
 }
