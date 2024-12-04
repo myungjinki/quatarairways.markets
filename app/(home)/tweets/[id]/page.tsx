@@ -1,12 +1,12 @@
+import Link from "next/link";
 import { notFound } from "next/navigation";
 import { unstable_cache as nextCache } from "next/cache";
 import db from "@/app/lib/db";
 import getSession from "@/app/lib/session";
 import { formatToTimeAgo } from "@/app/lib/utils";
-import TweetLike from "../../components/tweet-like";
-import Response from "../../components/response";
-import Link from "next/link";
 import { ROUTE } from "@/app/lib/constants";
+import TweetLike from "../../components/tweet-like";
+import ReplyForm from "../../components/reply";
 
 async function getTweet(id: number) {
   return db.tweet.findUnique({
@@ -89,20 +89,30 @@ export default async function tweetDetail({ params }: { params: { id: string } }
   const responses = await getCachedResponses(id);
 
   return (
-    <div>
-      <div>{tweet.tweet}</div>
-      <div>
-        <Link href={`${ROUTE.USERS}/${tweet.user.username}`}>{tweet.user.username}</Link>
-        <div>{formatToTimeAgo(tweet.created_at.toString())}</div>
-        <TweetLike likeCount={likeCount} isLiked={isLiked} tweetId={id} />
-      </div>
-      <Response tweetId={id} />
-      {responses.map((response, index) => (
-        <div key={index}>
-          <div>{response.payload}</div>
-          <Link href={`${ROUTE.USERS}/${response.user.username}`}>{response.user.username}</Link>
+    <div className="flex justify-center">
+      <div className="flex flex-col max-w-lg gap-4">
+        <div className="self-center rounded-lg w-96 h-96 bg-primary-500"></div>
+        <div className="flex items-center justify-between">
+          <div className="flex gap-4">
+            <div className="rounded-full size-16 bg-primary-500"></div>
+            <div className="flex flex-col justify-center">
+              <Link href={`${ROUTE.USERS}/${tweet.user.username}`}>{tweet.user.username}</Link>
+              <div>{formatToTimeAgo(tweet.created_at.toString())}</div>
+            </div>
+          </div>
+          <TweetLike likeCount={likeCount} isLiked={isLiked} tweetId={id} />
         </div>
-      ))}
+        <div>
+          <div className="text-xl">{tweet.tweet}</div>
+        </div>
+        <ReplyForm tweetId={id} />
+        {responses.map((response, index) => (
+          <div key={index} className="pb-2 border-b-2 border-neutral-300">
+            <div>{response.payload}</div>
+            <Link href={`${ROUTE.USERS}/${response.user.username}`}>{response.user.username}</Link>
+          </div>
+        ))}
+      </div>
     </div>
   );
 }
