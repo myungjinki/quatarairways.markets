@@ -2,18 +2,12 @@
 @tailwind components;
 @tailwind utilities;
 
-:root {
-    --primary: ##8e2157;
-    --secondary: #353535;
-    --dark: #222;
-    --light: #f4f4f4;
-    --danger: #ff453a; 
-}
 
-h2 {
-    @apply text-2xl;
-}
-
-a {
-    @apply underline font-bold hover:text-rose-900;
+@layer base {
+    h2 {
+        @apply text-2xl;
+    }   
+    a {
+        @apply underline font-bold hover:text-primary-500;
+    }
 }
