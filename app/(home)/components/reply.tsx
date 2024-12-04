@@ -12,8 +12,8 @@ interface ReplyFormProps {
 export default function ReplyForm({ tweetId }: ReplyFormProps) {
   const [_, dispatch] = useFormState(addResponse, tweetId);
   return (
-    <form action={dispatch} className="grid grid-cols-2 gap-4">
-      <Input name="response" />
+    <form action={dispatch} className="flex gap-4">
+      <Input className="w-72" name="response" />
       <Button>Reply</Button>
     </form>
   );
