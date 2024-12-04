@@ -1,27 +1,19 @@
 "use client";
 
-import { useFormState } from "react-dom";
-import handleCreateAccountForm from "./actions";
-import Input from "@/app/components/input";
-import Button from "@/app/components/button";
+import Link from "next/link";
+import CreateAccountForm from "../components/create-account-form";
 
 export default function CreateAccountPage() {
-  const [state, dispatch] = useFormState(handleCreateAccountForm, null);
   return (
-    <main>
-      <h1>Create Account</h1>
-      <form action={dispatch}>
-        <Input name="username" type="text" placeholder="Username" errors={state?.errors.fieldErrors.username} />
-        <Input name="email" type="email" placeholder="Email" errors={state?.errors.fieldErrors.email} />
-        <Input name="password" type="password" placeholder="Password" errors={state?.errors.fieldErrors.password} />
-        <Input
-          name="confirmPassword"
-          type="password"
-          placeholder="Confirm Password"
-          errors={state?.errors.fieldErrors.confirmPassword}
-        />
-        <Button>Create Account</Button>
-      </form>
-    </main>
+    <div className="flex justify-center">
+      <div className="flex flex-col items-center w-[512px] gap-4 p-4 rounded-2xl md:bg-white">
+        <h2>Create Account</h2>
+        <CreateAccountForm />
+        <div className="flex gap-1">
+          <span>Already a member?</span>
+          <Link href="/log-in">Log in</Link>
+        </div>
+      </div>
+    </div>
   );
 }

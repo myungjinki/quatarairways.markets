@@ -20,7 +20,7 @@ export default function Input({ svg, errors, name, ...props }: InputProps) {
         />
       </div>
       {errors?.map((error) => (
-        <div key={error} className="text-primary-500">
+        <div key={error} className="pt-2 pl-1 text-primary-500">
           {error}
         </div>
       ))}
