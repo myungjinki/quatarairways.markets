@@ -3,7 +3,7 @@
 import { useFormState } from "react-dom";
 import Button from "@/app/components/button";
 import Input from "@/app/components/input";
-import { handleForm } from "../actions";
+import { handleForm } from "../log-in/actions";
 
 export default function LoginForm() {
   const [state, action] = useFormState(handleForm, null);
