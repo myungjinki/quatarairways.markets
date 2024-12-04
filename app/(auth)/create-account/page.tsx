@@ -2,6 +2,7 @@
 
 import Link from "next/link";
 import CreateAccountForm from "../components/create-account-form";
+import { ROUTE } from "@/app/lib/constants";
 
 export default function CreateAccountPage() {
   return (
@@ -11,7 +12,7 @@ export default function CreateAccountPage() {
         <CreateAccountForm />
         <div className="flex gap-1">
           <span>Already a member?</span>
-          <Link href="/log-in">Log in</Link>
+          <Link href={ROUTE.LOGIN}>Log in</Link>
         </div>
       </div>
     </div>

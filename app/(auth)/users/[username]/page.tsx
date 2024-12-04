@@ -3,6 +3,7 @@ import { notFound } from "next/navigation";
 import db from "@/app/lib/db";
 import getSession from "@/app/lib/session";
 import { formatToTimeAgo } from "@/app/lib/utils";
+import { ROUTE } from "@/app/lib/constants";
 
 async function getUser(username: string) {
   const user = await db.user.findUnique({
@@ -44,7 +45,7 @@ export default async function UsersPage({ params }: { params: { username: string
       </div>
       <div>
         {user.Tweet.map((tweet, index) => (
-          <Link href={`/tweets/${tweet.id}`} key={index}>
+          <Link href={`${ROUTE.TWEETS}/${tweet.id}`} key={index}>
             <div>{tweet.id}</div>
             <div>{tweet.tweet}</div>
             <div>

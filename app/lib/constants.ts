@@ -15,4 +15,7 @@ export const ROUTE = {
   LOGIN: "/log-in",
   CREATE_ACCOUNT: "/create-account",
   SEARCH: "/search",
+  PROFILE: "/profile",
+  TWEETS: "/tweets",
+  USERS: "/users",
 };

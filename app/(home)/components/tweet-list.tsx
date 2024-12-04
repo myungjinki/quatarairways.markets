@@ -5,6 +5,7 @@ import Link from "next/link";
 import { formatToTimeAgo } from "@/app/lib/utils";
 import { getInitialTweets, getMoreTweets } from "../actions";
 import { Prisma } from "@prisma/client";
+import { ROUTE } from "@/app/lib/constants";
 
 type InitialTweets = Prisma.PromiseReturnType<typeof getInitialTweets>;
 
@@ -36,7 +37,7 @@ export default function TweetList({ initialTweets }: TweetListProps) {
     <div>
       <div>
         {tweets.map((tweet, index) => (
-          <Link href={`/tweets/${tweet.id}`} key={index}>
+          <Link href={`${ROUTE.TWEETS}/${tweet.id}`} key={index}>
             <div>{tweet.id}</div>
             <div>{tweet.tweet}</div>
             <div>{formatToTimeAgo(tweet.created_at.toString())}</div>
