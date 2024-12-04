@@ -34,19 +34,25 @@ export default function TweetList({ initialTweets }: TweetListProps) {
   }
 
   return (
-    <div>
-      <div>
-        {tweets.map((tweet, index) => (
-          <Link href={`${ROUTE.TWEETS}/${tweet.id}`} key={index}>
-            <div>{tweet.id}</div>
-            <div>{tweet.tweet}</div>
-            <div>{formatToTimeAgo(tweet.created_at.toString())}</div>
-          </Link>
-        ))}
-      </div>
-      <div>
+    <div className="flex flex-col w-full gap-4">
+      <div className="flex justify-center w-full gap-4">
         <button onClick={onClickLeft}>&larr;</button>
         <button onClick={onClickRight}>&rarr;</button>
+      </div>
+      <div className="flex flex-col gap-4">
+        {tweets.map((tweet, index) => (
+          <Link
+            href={`${ROUTE.TWEETS}/${tweet.id}`}
+            key={index}
+            className="flex w-full h-full gap-4 pb-4 border-b-2 border-neutral-300"
+          >
+            <div className="rounded-md size-24 bg-neutral-300"></div>
+            <div>
+              <div className="text-lg">{tweet.tweet}</div>
+              <div className="text-sm">{formatToTimeAgo(tweet.created_at.toString())}</div>
+            </div>
+          </Link>
+        ))}
       </div>
     </div>
   );

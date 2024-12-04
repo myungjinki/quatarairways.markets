@@ -7,7 +7,4 @@
     h2 {
         @apply text-2xl;
     }   
-    a {
-        @apply underline font-bold hover:text-primary-500;
-    }
 }
