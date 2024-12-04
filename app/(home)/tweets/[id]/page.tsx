@@ -5,6 +5,7 @@ import getSession from "@/app/lib/session";
 import { formatToTimeAgo } from "@/app/lib/utils";
 import TweetLike from "../../components/tweet-like";
 import Response from "../../components/response";
+import Link from "next/link";
 
 async function getTweet(id: number) {
   return db.tweet.findUnique({
@@ -90,7 +91,7 @@ export default async function tweetDetail({ params }: { params: { id: string } }
     <div>
       <div>{tweet.tweet}</div>
       <div>
-        <div>{tweet.user.username}</div>
+        <Link href={`/users/${tweet.user.username}`}>{tweet.user.username}</Link>
         <div>{formatToTimeAgo(tweet.created_at.toString())}</div>
         <TweetLike likeCount={likeCount} isLiked={isLiked} tweetId={id} />
       </div>
@@ -98,7 +99,7 @@ export default async function tweetDetail({ params }: { params: { id: string } }
       {responses.map((response, index) => (
         <div key={index}>
           <div>{response.payload}</div>
-          <div>{response.user.username}</div>
+          <Link href={`/users/${response.user.username}`}>{response.user.username}</Link>
         </div>
       ))}
     </div>
