@@ -8,9 +8,15 @@ interface InputProps extends InputHTMLAttributes<HTMLInputElement> {
 export default function Input({ svg, errors, name, ...props }: InputProps) {
   return (
     <div className="w-full">
-      <div className="flex p-4 rounded-xl ring-2 ring-neutral-300">
+      <div className="flex p-4 rounded-xl ring-2 ring-neutral-300 ">
         {svg && <Image src={svg} alt={name} width="30" height="30" />}
-        <input name={name} type={props.type} placeholder={props.placeholder} required={props.required} />
+        <input
+          className="bg-background md:bg-white"
+          name={name}
+          type={props.type}
+          placeholder={props.placeholder}
+          required={props.required}
+        />
       </div>
       {errors?.map((error) => (
         <span key={error}>{error}</span>

@@ -20,6 +20,7 @@ const config: Config = {
       },
       secondary: colors.yellow,
       neutral: colors.gray,
+      background: "#f2f3fa",
     },
     extend: {
       backgroundImage: {
