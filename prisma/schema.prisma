@@ -21,6 +21,7 @@ model User {
   updated_at DateTime @updatedAt
   Tweet      Tweet[]
   Like       Like[]
+  Response   Response[]
 }
 
 model Tweet {
@@ -31,10 +32,21 @@ model Tweet {
   user       User     @relation(fields: [userId], references: [id], onDelete: Cascade)
   userId     Int
   Like       Like[]
+  Response   Response[]
 }
 
 model Like {
-  id         Int      @id @default(autoincrement())
+  created_at DateTime @default(now())
+  user       User     @relation(fields: [userId], references: [id], onDelete: Cascade)
+  tweet      Tweet    @relation(fields: [tweetId], references: [id], onDelete: Cascade)
+  userId     Int
+  tweetId    Int
+  @@id(name: "id", [userId, tweetId])
+}
+
+model Response {
+  id Int @id @default(autoincrement())
+  payload    String
   created_at DateTime @default(now())
   user       User     @relation(fields: [userId], references: [id], onDelete: Cascade)
   tweet      Tweet    @relation(fields: [tweetId], references: [id], onDelete: Cascade)
