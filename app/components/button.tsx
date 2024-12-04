@@ -11,7 +11,7 @@ export default function Button(props: ButtonProps) {
     <button
       {...props}
       disabled={pending}
-      className="flex justify-center w-full p-4 font-bold text-white rounded-full bg-rose-800"
+      className="flex justify-center w-full p-4 font-bold text-white rounded-full bg-primary-500"
     >
       {pending ? "Loading..." : props.children}
     </button>
