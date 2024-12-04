@@ -13,4 +13,6 @@ export const PASSWORD_CONFIRM_ERROR = "Passwords do not match";
 export const ROUTE = {
   HOME: "/",
   LOGIN: "/log-in",
+  CREATE_ACCOUNT: "/create-account",
+  SEARCH: "/search",
 };
