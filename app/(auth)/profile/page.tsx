@@ -1,5 +1,4 @@
-import { notFound, redirect } from "next/navigation";
-import getSession from "@/app/lib/session";
+import { notFound } from "next/navigation";
 import { getUser } from "./actions";
 
 export default async function ProfilePage() {
@@ -7,18 +6,9 @@ export default async function ProfilePage() {
   if (!user) {
     return notFound();
   }
-  const logOut = async () => {
-    "use server";
-    const session = await getSession();
-    session.destroy();
-    redirect("/log-in");
-  };
   return (
     <div>
       <h1>Welcome! {user?.username}!</h1>
-      <form action={logOut}>
-        <button>Log out</button>
-      </form>
     </div>
   );
 }
