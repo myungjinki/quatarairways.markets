@@ -1,5 +1,6 @@
 import Link from "next/link";
 import LoginForm from "../components/login-form";
+import { ROUTE } from "@/app/lib/constants";
 
 export default function Home() {
   return (
@@ -9,7 +10,7 @@ export default function Home() {
         <LoginForm />
         <div className="flex gap-1">
           <span>Not a member?</span>
-          <Link href="/create-account">Sign up</Link>
+          <Link href={ROUTE.CREATE_ACCOUNT}>Sign up</Link>
         </div>
       </div>
     </div>

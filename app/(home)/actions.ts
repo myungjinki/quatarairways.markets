@@ -4,6 +4,7 @@ import { redirect } from "next/navigation";
 import { z } from "zod";
 import db from "@/app/lib/db";
 import getSession from "../lib/session";
+import { ROUTE } from "../lib/constants";
 
 export async function getInitialTweets(page: number) {
   return await db.tweet.findMany({
@@ -55,7 +56,7 @@ export async function addForm(state: any, formData: FormData) {
           id: true,
         },
       });
-      redirect(`/tweets/${tweet.id}`);
+      redirect(`${ROUTE.TWEETS}/${tweet.id}`);
     }
   }
 }

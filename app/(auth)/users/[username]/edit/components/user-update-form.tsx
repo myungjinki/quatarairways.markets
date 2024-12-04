@@ -5,12 +5,13 @@ import { useFormState } from "react-dom";
 import { UserUpdate } from "../actions";
 import Input from "@/app/components/input";
 import { redirect } from "next/navigation";
+import { ROUTE } from "@/app/lib/constants";
 
 export default function UserUpdateForm({ user }: { user: User }) {
   const [state, dispatch] = useFormState(UserUpdate, { success: false, data: user });
   if (state.success) {
     alert("Successfully updated");
-    redirect(`/users/${user.username}`);
+    redirect(`${ROUTE.USERS}/${user.username}`);
   }
   return (
     <form action={dispatch}>

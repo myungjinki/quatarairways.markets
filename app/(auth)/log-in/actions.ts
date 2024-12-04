@@ -10,6 +10,7 @@ import {
   PASSWORD_MIN_LENGTH,
   PASSWORD_REGEX,
   PASSWORD_REGEX_ERROR,
+  ROUTE,
 } from "@/app/lib/constants";
 import db from "@/app/lib/db";
 import getSession from "@/app/lib/session";
@@ -45,7 +46,7 @@ export async function handleForm(prevState: any, formData: FormData) {
       const session = await getSession();
       session.id = user!.id;
       await session.save();
-      redirect("/profile");
+      redirect(ROUTE.HOME);
     } else {
       return {
         fieldErrors: {

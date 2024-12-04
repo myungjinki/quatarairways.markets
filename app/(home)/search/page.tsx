@@ -6,6 +6,7 @@ import { formatToTimeAgo } from "@/app/lib/utils";
 import { SearchAction } from "./actions";
 import Input from "@/app/components/input";
 import Button from "@/app/components/button";
+import { ROUTE } from "@/app/lib/constants";
 
 export default function Search() {
   const [tweets, dispatch] = useFormState(SearchAction, []);
@@ -18,7 +19,7 @@ export default function Search() {
       </form>
       <div>
         {tweets.map((tweet, index) => (
-          <Link key={index} href={`/tweets/${tweet.id}`}>
+          <Link key={index} href={`${ROUTE.TWEETS}/${tweet.id}`}>
             <div>{tweet.id}</div>
             <div>{tweet.tweet}</div>
             <div>
