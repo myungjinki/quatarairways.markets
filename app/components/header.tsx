@@ -1,7 +1,13 @@
+"use server";
+
 import Link from "next/link";
 import { ROUTE } from "../lib/constants";
+import getSession from "../lib/session";
+import Logout from "./logout";
 
-export default function Header() {
+export default async function Header() {
+  const session = await getSession();
+  const user = session.id;
   return (
     <header className="flex justify-between p-8">
       <div>
@@ -13,9 +19,15 @@ export default function Header() {
       </div>
       <div className="hidden gap-4 md:flex">
         <Link href={ROUTE.SEARCH}>Search Icon</Link>
-        <Link href={ROUTE.LOGIN}>Log in</Link>
-        <span>|</span>
-        <Link href={ROUTE.CREATE_ACCOUNT}>Sign up</Link>
+        {!user ? (
+          <>
+            <Link href={ROUTE.LOGIN}>Log in</Link>
+            <span>|</span>
+            <Link href={ROUTE.CREATE_ACCOUNT}>Sign up</Link>
+          </>
+        ) : (
+          <Logout />
+        )}
       </div>
     </header>
   );
