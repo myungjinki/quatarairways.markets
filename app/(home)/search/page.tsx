@@ -1,34 +1,21 @@
 "use client";
 
 import { useFormState } from "react-dom";
-import Link from "next/link";
-import { formatToTimeAgo } from "@/app/lib/utils";
 import { SearchAction } from "./actions";
 import Input from "@/app/components/input";
 import Button from "@/app/components/button";
-import { ROUTE } from "@/app/lib/constants";
+import TweetList from "../components/tweet-list";
 
 export default function Search() {
   const [tweets, dispatch] = useFormState(SearchAction, []);
 
   return (
-    <main>
-      <form action={dispatch}>
+    <div className="flex flex-col gap-4 max-w-xl mx-auto">
+      <form action={dispatch} className="flex gap-4">
         <Input name="keyword" type="text" />
-        <Button>Search</Button>
+        <Button className="w-32">Search</Button>
       </form>
-      <div>
-        {tweets.map((tweet, index) => (
-          <Link key={index} href={`${ROUTE.TWEETS}/${tweet.id}`}>
-            <div>{tweet.id}</div>
-            <div>{tweet.tweet}</div>
-            <div>
-              <div>{tweet.user.username}</div>
-              <div>{formatToTimeAgo(tweet.created_at.toString())}</div>
-            </div>
-          </Link>
-        ))}
-      </div>
-    </main>
+      <TweetList tweets={tweets} />
+    </div>
   );
 }
