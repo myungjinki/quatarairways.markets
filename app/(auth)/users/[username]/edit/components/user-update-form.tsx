@@ -7,9 +7,12 @@ import Input from "@/app/components/input";
 import { redirect } from "next/navigation";
 import { ROUTE } from "@/app/lib/constants";
 import Button from "@/app/components/button";
+import { useState } from "react";
 
 export default function UserUpdateForm({ user }: { user: User }) {
-  const [state, dispatch] = useFormState(UserUpdate, { success: false, data: user });
+  const [state, dispatch] = useFormState(UserUpdate, { success: false, user });
+  const [bio, setBio] = useState(user.bio);
+
   if (state.success) {
     alert("Successfully updated");
     redirect(`${ROUTE.USERS}/${user.username}`);
@@ -18,23 +21,23 @@ export default function UserUpdateForm({ user }: { user: User }) {
     <form action={dispatch} className="flex flex-col gap-4">
       <label>
         <span className="span__label">Username</span>
-        <Input name="username" type="text" value={user.username} errors={state.errors?.fieldErrors.username} />
+        <Input name="username" type="text" value={user.username} disabled errors={state.errors?.fieldErrors.username} />
       </label>
       <label>
         <span className="span__label">Email</span>
-        <Input name="email" type="email" value={user.email} errors={state.errors?.fieldErrors.email} />
+        <Input name="email" type="email" value={user.email} disabled errors={state.errors?.fieldErrors.email} />
       </label>
       <label>
         <span className="span__label">Password</span>
-        <Input name="password" type="password" errors={state.errors?.fieldErrors.password} />
+        <Input name="password" type="password" disabled errors={state.errors?.fieldErrors.password} />
       </label>
       <label>
         <span className="span__label">Confirm Password</span>
-        <Input name="confirm_password" type="password" errors={state.errors?.fieldErrors.confirm_password} />
+        <Input name="confirm_password" type="password" disabled errors={state.errors?.fieldErrors.confirm_password} />
       </label>
       <label>
         <span className="span__label">Bio</span>
-        <Input name="bio" type="text" value={user.bio ? user.bio : ""} />
+        <Input name="bio" type="text" onChange={(event) => setBio(event.target.value)} />
       </label>
       <Button>Save</Button>
     </form>

@@ -3,18 +3,19 @@ import { EMAIL_REGEX, PASSWORD_MIN_LENGTH, PASSWORD_REGEX, PASSWORD_REGEX_ERROR 
 import db from "@/app/lib/db";
 
 const checkPasswords = ({ password, confirm_password }: { password: string; confirm_password: string }) =>
-  password === confirm_password;
+  password === confirm_password || (password === "" && confirm_password === "");
 
 export const userUpdateFormSchema = z
   .object({
     username: z
       .string({
-        invalid_type_error: "Username must be a string!",
-        required_error: "Where is my username???",
+        invalid_type_error: "User name must be a string",
+        required_error: "Where is my username?",
       })
       .toLowerCase()
       .min(5)
-      .trim(),
+      .trim()
+      .transform((val) => val ?? ""),
     email: z.string().email().toLowerCase().regex(EMAIL_REGEX, "Must be @zod.com"),
     password: z.string().min(PASSWORD_MIN_LENGTH).regex(PASSWORD_REGEX, PASSWORD_REGEX_ERROR),
     confirm_password: z.string().min(PASSWORD_MIN_LENGTH),
