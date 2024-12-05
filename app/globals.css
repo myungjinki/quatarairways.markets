@@ -1,3 +1,19 @@
 @tailwind base;
 @tailwind components;
 @tailwind utilities;
+
+
+@layer base {
+    h2 {
+        @apply text-2xl;
+    }   
+}
+
+@layer components {
+    .btn-sm {
+        @apply bg-primary-500 text-white px-2 py-2 rounded-md;
+    }
+    .span__label {
+        @apply text-neutral-900 font-bold;
+    }
+}
