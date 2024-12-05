@@ -13,7 +13,6 @@ export default function AddTweet() {
 
   function handleChange(event: React.FormEvent<HTMLInputElement>) {
     setMessage(event.currentTarget.value);
-    console.log(message);
   }
 
   return (

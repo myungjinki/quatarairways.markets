@@ -18,6 +18,7 @@ export default function Input({ name, svg, errors, className = "", ...props }: I
           type={props.type}
           placeholder={props.placeholder}
           required={props.required}
+          onChange={props.onChange}
         />
       </div>
       {errors?.map((error) => (

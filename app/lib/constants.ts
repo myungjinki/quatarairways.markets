@@ -10,6 +10,8 @@ export const PASSWORD_REGEX = new RegExp(/\d/);
 export const PASSWORD_HASH_ROUNDS = 12;
 export const PASSWORD_CONFIRM_ERROR = "Passwords do not match";
 
+export const TWEETS_PAGE_SIZE = 10;
+
 export const ROUTE = {
   HOME: "/",
   LOGIN: "/log-in",

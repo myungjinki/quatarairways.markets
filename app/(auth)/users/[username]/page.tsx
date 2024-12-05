@@ -2,8 +2,8 @@ import Link from "next/link";
 import { notFound } from "next/navigation";
 import db from "@/app/lib/db";
 import getSession from "@/app/lib/session";
-import { formatToTimeAgo } from "@/app/lib/utils";
-import { ROUTE } from "@/app/lib/constants";
+import TweetList from "@/app/(home)/components/tweet-list";
+import UserProfile from "./edit/components/user-profile";
 
 async function getUser(username: string) {
   const user = await db.user.findUnique({
@@ -33,27 +33,13 @@ export default async function UsersPage({ params }: { params: { username: string
   const isOwner = session.id! === user.id;
 
   return (
-    <div>
-      <div>
-        <div>
-          <div>Profile</div>
-          <div>Username: {user.username}</div>
-          <div>Email: {user.email}</div>
-          <div className="self-end">Bio: {user.bio}</div>
+    <div className="flex flex-col items-center w-full">
+      <div className="flex flex-col items-center w-full gap-4">
+        <div className="self-center text-2xl">Profile</div>
+        <UserProfile user={user} isOwner={isOwner} />
+        <div className="flex flex-col w-full max-w-xl gap-4 px-4 pt-16">
+          <TweetList tweets={user.Tweet} />
         </div>
-        {isOwner && <Link href={`${user.username}/edit`}>Edit</Link>}
-      </div>
-      <div>
-        {user.Tweet.map((tweet, index) => (
-          <Link href={`${ROUTE.TWEETS}/${tweet.id}`} key={index}>
-            <div>{tweet.id}</div>
-            <div>{tweet.tweet}</div>
-            <div>
-              <div>{tweet.user.username}</div>
-              <div>{formatToTimeAgo(tweet.created_at.toString())}</div>
-            </div>
-          </Link>
-        ))}
       </div>
     </div>
   );
