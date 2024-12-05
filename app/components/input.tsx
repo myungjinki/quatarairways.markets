@@ -12,13 +12,15 @@ export default function Input({ name, svg, errors, className = "", ...props }: I
       <div>
         {svg && <Image src={svg} alt={name} width="30" height="30" />}
         <input
-          className={`${className} flex w-full h-full p-4 rounded-xl ring-2 ring-neutral-300 bg-background md:bg-white invalid:ring-primary-500`}
+          className={`${className} flex w-full h-full p-4 rounded-xl ring-2 ring-neutral-300 bg-background md:bg-white invalid:ring-primary-500 disabled:bg-neutral-100`}
           min={props.min}
           name={name}
           type={props.type}
           placeholder={props.placeholder}
           required={props.required}
+          value={props.value}
           onChange={props.onChange}
+          disabled={props.disabled}
         />
       </div>
       {errors?.map((error) => (

@@ -31,5 +31,12 @@ export default async function UserEdit({ params }: { params: { username: string 
   if (session.id !== user.id) {
     notFound();
   }
-  return <UserUpdateForm user={user} />;
+  return (
+    <div className="flex flex-col items-center">
+      <h2>Profile</h2>
+      <div className="w-full max-w-xl">
+        <UserUpdateForm user={user} />
+      </div>
+    </div>
+  );
 }

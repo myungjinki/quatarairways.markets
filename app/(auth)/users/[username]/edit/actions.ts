@@ -8,39 +8,39 @@ import { userUpdateFormSchema } from "./validation";
 export async function UserUpdate(
   prevState: {
     success: Boolean;
-    data: User;
+    user: User;
   },
   formData: FormData
 ) {
-  const data = {
-    username: prevState.data.username,
-    password: formData.get("password"),
-    confirm_password: formData.get("confirm_password"),
-    email: formData.get("email"),
-    bio: formData.get("bio"),
-  };
-  const result = await userUpdateFormSchema.spa(data);
-  if (!result.success) {
+  const { success, data, error } = await userUpdateFormSchema.spa({
+    username: formData.get("username") || prevState.user.username,
+    email: formData.get("email") || prevState.user.email,
+    password: formData.get("password") || "",
+    confirm_password: formData.get("confirm_password") || "",
+    bio: formData.get("bio") || prevState.user.bio,
+  });
+  if (!success) {
     return {
       success: false,
-      data: prevState.data,
-      errors: result.error.flatten(),
+      user: prevState.user,
+      errors: error.flatten(),
     };
   } else {
-    const hashedPassword = await bcrypt.hash(result.data.password, 12);
+    const hashedPassword = await bcrypt.hash(data.password, 12);
     const user = await db.user.update({
       where: {
-        username: result.data.username,
+        username: data.username,
       },
       data: {
-        email: result.data.email,
+        username: data.username,
+        email: data.email,
         password: hashedPassword,
-        bio: result.data.bio,
+        bio: data.bio,
       },
     });
     return {
       success: true,
-      data: user,
+      user: user,
     };
   }
 }
