@@ -20,6 +20,25 @@ export const userUpdateFormSchema = z
     confirm_password: z.string().min(PASSWORD_MIN_LENGTH),
     bio: z.string().optional(),
   })
+  .superRefine(async ({ username }, ctx) => {
+    const user = await db.user.findUnique({
+      where: {
+        username,
+      },
+      select: {
+        id: true,
+      },
+    });
+    if (user) {
+      ctx.addIssue({
+        code: "custom",
+        message: "This username is already taken",
+        path: ["username"],
+        fatal: true,
+      });
+      return z.NEVER;
+    }
+  })
   .superRefine(async ({ email }, ctx) => {
     const user = await db.user.findUnique({
       where: {

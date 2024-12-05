@@ -13,7 +13,7 @@ export async function UserUpdate(
   formData: FormData
 ) {
   const data = {
-    username: prevState.data.username,
+    username: formData.get("username"),
     password: formData.get("password"),
     confirm_password: formData.get("confirm_password"),
     email: formData.get("email"),
@@ -33,6 +33,7 @@ export async function UserUpdate(
         username: result.data.username,
       },
       data: {
+        username: result.data.username,
         email: result.data.email,
         password: hashedPassword,
         bio: result.data.bio,
