@@ -4,11 +4,11 @@ import { redirect } from "next/navigation";
 import { z } from "zod";
 import db from "@/app/lib/db";
 import getSession from "../lib/session";
-import { ROUTE } from "../lib/constants";
+import { ROUTE, TWEETS_PAGE_SIZE } from "../lib/constants";
 
 export async function getInitialTweets(page: number) {
   return await db.tweet.findMany({
-    take: 5,
+    take: TWEETS_PAGE_SIZE,
     orderBy: {
       created_at: "desc",
     },
@@ -17,8 +17,8 @@ export async function getInitialTweets(page: number) {
 
 export async function getMoreTweets(page: number) {
   return await db.tweet.findMany({
-    skip: page * 5,
-    take: 5,
+    skip: page * TWEETS_PAGE_SIZE,
+    take: TWEETS_PAGE_SIZE,
     orderBy: {
       created_at: "desc",
     },
